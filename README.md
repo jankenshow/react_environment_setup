@@ -1,8 +1,7 @@
 # For react app environment setup
 
 ### Environment
-nodenv
-node : v12.18.3  
+node (nodenv) : v12.18.3  
 npm : 6.14.8  
 yarn : 1.22.5  
 
