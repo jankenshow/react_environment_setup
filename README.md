@@ -1,4 +1,4 @@
-# ra-men_app
+# For react app environment setup
 
 ### Environment
 nodenv
