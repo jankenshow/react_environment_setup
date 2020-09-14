@@ -63,9 +63,40 @@ $ cd [where you create your app]
 $ nodenv local v12.18.3
 ```
 
-3. install packages
+3. Change app name
+```{json:package.json}
+{
+  "name": "app",　# ← anything you like
+  "version": "1.0.0",
+  ・・・
+```
+
+4. install packages
 ```
 $ npm install -g yarn
 $ . ~/.bash_rc
 $ yarn install
+```
+
+5. run dev-server
+```
+$ yarn start
+```
+
+6. browse your app  
+visit http://localhost:8080 on browser  
+
+if you would like to change port number, edit webpack.config.js #L23  
+https://github.com/jankenshow/react_environment_setup/blob/master/webpack.config.js#L23
+```{js:webpack.config.js}
+・・・
+    devServer: {
+        contentBase: dist,
+        port: 8080, # ← here
+        open: false,
+        historyApiFallback: true,
+        inline: true,
+        hot: true
+    },
+・・・
 ```
