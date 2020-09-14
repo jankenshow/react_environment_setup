@@ -63,7 +63,8 @@ $ cd [where you create your app]
 $ nodenv local v12.18.3
 ```
 
-3. Change app name
+3. Change app name  
+at package.json  
 ```{json:package.json}
 {
   "name": "app",　# ← anything you like
