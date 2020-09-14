@@ -17,7 +17,7 @@ Prettier
 ### Directory structure
 
 ```
-ra-menn_app
+app
 ├── .babelrc
 ├── .eslintrc.js
 ├── .gitignore
