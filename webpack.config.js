@@ -32,36 +32,27 @@ module.exports = (env, argv) => ({
     },
     module: {
         rules: [
-            // .jsxファイルの時
-            // {
-            //     test: [/\.jsx$/, /\.js$/],
-            //     exclude: /(node_modules|bower_components)/,
-            //     use: [{
-            //         loader: "babel-loader",
-            //         options: {
-            //             presets: ["@babel/preset-env", "@babel/preset-react"]
-            //         }
-            //     }]
-            // },
             // js,ts,tsxのローダ設定
             {
-                test: [/\.ts$/, /\.tsx$/, /\.js$/],
+                test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
                 loader: ['babel-loader', 'ts-loader']
             },
             // scssのローダ設定
             // {
             //     test: [/\.css$/, /\.scss$/],
             //     exclude: /node_modules/,
-            //     loader: [MiniCssExtractPlugin.loader, 'css-loader?modules', 'postcss-loader', 'sass-loader'],
+            //     loader: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
             // }
             // postcssがうまく機能しないので変更
             {
-                test: /\.scss/, // 対象となるファイルの拡張子
+                test: [/\.css$/, /\.scss$/], // 対象となるファイルの拡張子
                 use: [
                     // CSSファイルを書き出すオプションを有効にする
                     {
                         loader: MiniCssExtractPlugin.loader,
                     },
+                    // linkタグに出力する機能
+                    "style-loader",
                     // CSSをバンドルするための機能
                     {
                         loader: "css-loader",
