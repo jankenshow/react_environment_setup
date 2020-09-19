@@ -49,10 +49,42 @@ module.exports = (env, argv) => ({
                 loader: ['babel-loader', 'ts-loader']
             },
             // scssのローダ設定
+            // {
+            //     test: [/\.css$/, /\.scss$/],
+            //     exclude: /node_modules/,
+            //     loader: [MiniCssExtractPlugin.loader, 'css-loader?modules', 'postcss-loader', 'sass-loader'],
+            // }
+            // postcssがうまく機能しないので変更
             {
-                test: [/\.css$/, /\.scss$/],
-                exclude: /node_modules/,
-                loader: [MiniCssExtractPlugin.loader, 'css-loader?modules', 'postcss-loader', 'sass-loader'],
+                test: /\.scss/, // 対象となるファイルの拡張子
+                use: [
+                    // CSSファイルを書き出すオプションを有効にする
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    // CSSをバンドルするための機能
+                    {
+                        loader: "css-loader",
+                        options: {
+                            // オプションでCSS内のurl()メソッドの取り込みを禁止する
+                            url: false,
+                            // ソースマップの利用有無
+                            sourceMap: argv.mode == "development",
+
+                            // 0 => no loaders (default);
+                            // 1 => postcss-loader;
+                            // 2 => postcss-loader, sass-loader
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            // ソースマップの利用有無
+                            sourceMap: argv.mode == "development",
+                        },
+                    },
+                ],
             }
         ]
     },
